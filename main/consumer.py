@@ -11,6 +11,7 @@ channel = connection.channel()
 channel.queue_declare(queue='main')
 
 
+
 def callback(ch, method, properties, body):
     print('Received in main')
     data = json.loads(body)
