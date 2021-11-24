@@ -4,9 +4,13 @@ on:
   push:
     branches: [ develop ]
     paths: [ admin/** ]
+    tags:
+      - 'v*'
   pull_request:
     branches: [ develop ]
     paths: [ admin/** ]
+    tags:
+      - 'v*'
 
 jobs:
   push_to_registry:
