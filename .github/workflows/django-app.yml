@@ -72,5 +72,5 @@ jobs:
           manifests: |
             aks/dj-app.yml
           images: |
-            ${{ env.REGISTRY_NAME }}:${{ steps.meta.outputs.tags }}${{ github.run_number }}
+            ${{ steps.meta.outputs.tags }}${{ github.run_number }}
           namespace: ${{ env.NAMESPACE }}
