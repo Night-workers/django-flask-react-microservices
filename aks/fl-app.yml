@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fl-app
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
       app: fl-app
@@ -16,16 +16,10 @@ spec:
     spec:
       containers:
         - name: fl-app
-          image: django-micro_fl-app:latest
+          image: senjespakk/flask-app
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 8001
-          env:
-            - name: DatabaseSettings__ConnectionString
-              valueFrom:
-                  configMapKeyRef:
-                    name: fl-db-configmap
-                    key: connection_string
           resources:
             requests:
               memory: "64Mi"

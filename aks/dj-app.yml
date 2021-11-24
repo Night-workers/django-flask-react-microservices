@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dj-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dj-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dj-app
-          image: localhost:5000/dj-appv5
+          image: senjespakk/django-app
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 8000

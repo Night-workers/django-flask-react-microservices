@@ -12,6 +12,14 @@ on:
     tags:
       - 'v*'
 
+
+env:
+  REGISTRY_NAME: senjespakk/django-app
+  CLUSTER_NAME: aks-getting-started
+  CLUSTER_RESOURCE_GROUP: aks-getting-started
+  NAMESPACE: default
+
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -43,3 +51,26 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}${{ github.run_number }}
           labels: ${{ steps.meta.outputs.labels }}
+
+
+      - name: Set the target Azure Kubernetes Service (AKS) cluster
+        uses: azure/aks-set-context@v1
+        with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+
+
+      - name: Create namespace if doesn't exist
+        run: |
+          kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
+
+      - name: Deploy app to AKS
+        uses: azure/k8s-deploy@v1
+        with:
+          manifests: |
+            aks/dj-app.yml
+          images: |
+            ${{ env.REGISTRY_NAME }}:${{ steps.meta.outputs.tags }}${{ github.run_number }}
+          namespace: ${{ env.NAMESPACE }}

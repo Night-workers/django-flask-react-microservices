@@ -5,7 +5,7 @@ metadata:
   labels:
     app: reactapp
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: reactapp
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: reactapp
-          image: localhost:5000/reactappv3
+          image: senjespakk/react-app
           imagePullPolicy: IfNotPresent          
           ports:
             - containerPort: 3000

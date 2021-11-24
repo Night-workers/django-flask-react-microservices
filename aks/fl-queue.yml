@@ -5,7 +5,7 @@ metadata:
   labels:
     app: fl-queue
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
       app: fl-queue
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: fl-queue
-          image: django-micro_fl-queue:latest
+          image: senjespakk/flask-queue
           imagePullPolicy: IfNotPresent          
           resources:
             requests:

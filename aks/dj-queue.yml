@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dj-queue
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
       app: dj-queue
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: dj-queue
-          image: django-micro_dj-queue:latest
+          image: senjespakk/django-queue
           imagePullPolicy: IfNotPresent          
           resources:
             requests:
