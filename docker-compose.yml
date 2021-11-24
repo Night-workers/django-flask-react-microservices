@@ -38,8 +38,8 @@ services:
 
   fl-app:
     build:
-      context: .
-      dockerfile: main/Dockerfile
+      context: admin/
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 8001:5000
