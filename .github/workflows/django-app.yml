@@ -41,5 +41,5 @@ jobs:
         with:
           context: admin/
           push: true
-          tags: ${{ steps.meta.outputs.tags }}${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}${{ github.run_number }}
           labels: ${{ steps.meta.outputs.labels }}
