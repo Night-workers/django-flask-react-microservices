@@ -3,12 +3,16 @@ name: Django Image CI
 on:
   push:
     branches: [ develop ]
-    paths: [ admin/** ]
+    paths: 
+      - admin/**
+      - aks/dj-app.yml
     tags:
       - 'v*'
   pull_request:
     branches: [ develop ]
-    paths: [ admin/** ]
+    paths: 
+      - admin/**
+      - aks/dj-app.yml
     tags:
       - 'v*'
 

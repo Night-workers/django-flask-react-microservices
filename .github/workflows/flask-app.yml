@@ -3,12 +3,16 @@ name: Flask Image CI
 on:
   push:
     branches: [ develop ]
-    paths: [ main/** ]
+    paths: 
+      - main/**
+      - aks/fl-app.yml
     tags:
       - 'v*'
   pull_request:
     branches: [ develop ]
-    paths: [ main/** ]
+    paths: 
+      - main/**
+      - aks/fl-app.yml
     tags:
       - 'v*'
 

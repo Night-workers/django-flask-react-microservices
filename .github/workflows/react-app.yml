@@ -3,12 +3,16 @@ name: React Image CI
 on:
   push:
     branches: [ develop ]
-    paths: [ h-w-react/** ]
+    paths: 
+      - h-w-react/** 
+      - aks/reactapp.yml
     tags:
       - 'v*'
   pull_request:
     branches: [ develop ]
-    paths: [ h-w-react/** ]
+    paths: 
+      - h-w-react/** 
+      - aks/reactapp.yml
     tags:
       - 'v*'
 
