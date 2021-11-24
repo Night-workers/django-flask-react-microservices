@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fl-db-deployment
+  labels:
+    app: fl-db
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: fl-db
+  template:
+    metadata:
+      labels:
+        app: fl-db
+    spec:
+      containers:
+        - name: fl-db
+          image: mysql:5.7.22
+          ports:
+            - containerPort: 33067
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: fl-db-secret
+                  key: database  
+
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: fl-db-secret
+                  key: user  
+
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fl-db-secret
+                  key: pass  
+
+            - name: MSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: fl-db-secret
+                  key: root_pass                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fl-db-service
+spec:
+  selector:
+    app: fl-db
+  ports:
+    - protocol: TCP
+      port: 33067
+      targetPort: 33067

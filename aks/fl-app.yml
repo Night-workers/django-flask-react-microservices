@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fl-app-deployment
+  labels:
+    app: fl-app
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: fl-app
+  template:
+    metadata:
+      labels:
+        app: fl-app
+    spec:
+      containers:
+        - name: fl-app
+          image: django-micro_fl-app:latest
+          imagePullPolicy: IfNotPresent          
+          ports:
+            - containerPort: 8001
+          env:
+            - name: DatabaseSettings__ConnectionString
+              valueFrom:
+                  configMapKeyRef:
+                    name: fl-db-configmap
+                    key: connection_string
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.1"
+            limits:
+              memory: "128Mi"
+              cpu: "0.3"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fl-app-service
+spec:  
+  selector:
+    app: fl-app
+  ports:
+    - protocol: TCP
+      port: 8001

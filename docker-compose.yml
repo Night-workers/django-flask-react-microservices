@@ -1,0 +1,85 @@
+version: '3.8'
+services:
+  dj-app:
+    build:
+      context: admin/
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./admin:/app
+    depends_on:
+      - dj-db
+
+  dj-queue:
+    build:
+      context: .
+      dockerfile: admin/Dockerfile
+    restart: always
+    command: 'python -u consumer.py'
+    volumes:
+      - ./admin:/app
+    depends_on:
+      - dj-db
+
+  dj-db:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./admin/.dbdata:/var/lib/mysql
+    ports:
+      - 33066:3306
+
+  fl-app:
+    build:
+      context: .
+      dockerfile: main/Dockerfile
+    restart: always
+    ports:
+      - 8001:5000
+    volumes:
+      - ./main:/app
+    depends_on:
+      - fl-db
+
+  fl-queue:
+    build:
+      context: .
+      dockerfile: main/Dockerfile
+    restart: always
+    command: 'python -u consumer.py'
+    volumes:
+      - ./main:/app
+    depends_on:
+      - fl-db
+
+  fl-db:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_DATABASE: main
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./main/.dbdata:/var/lib/mysql
+    ports:
+      - 33067:3306
+
+  reactapp:
+    build:
+      context: h-w-react/
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+
+    

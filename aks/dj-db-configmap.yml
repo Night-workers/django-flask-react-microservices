@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dj-db-configmap
+data:
+  connection_string: mysql://username:password@dj-db-service:33066
