@@ -33,3 +33,11 @@ resource "azurerm_kubernetes_cluster_node_pool" "aks-getting-started" {
     Environment = "Production"
   }
 }
+
+resource "azurerm_container_registry" "aks-getting-started" {
+  name                  = "aksgettingstarted"
+  location              = azurerm_resource_group.aks-getting-started.location
+  resource_group_name   = azurerm_resource_group.aks-getting-started.name
+  sku                 = "Premium"
+  admin_enabled       = false
+}
