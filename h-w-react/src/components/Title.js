@@ -4,7 +4,7 @@ import * as axios from 'axios'
 const Title = () => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(false)
-  const produtsUrl = `http://localhost:8000/api/products`
+  const produtsUrl = `http://dj-app-service:8000/api/products`
 
   useEffect(() => {
     const getProducts = async () => {
