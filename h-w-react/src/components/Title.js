@@ -24,7 +24,7 @@ const Title = () => {
   }, [])
   return (
     <div className="title">
-      <span className="caption">{products[0]?.title} Hello <strong>{products[1]?.title} World</strong>
+      <span className="caption">{products[0]?.title}  <strong>{products[1]?.title} </strong>
       </span>
     </div>
   );

@@ -16,13 +16,13 @@ spec:
   - host: myapp.southafricanorth.cloudapp.azure.com
     http:
       paths:
-      - path: /hello-world-one(/|$)(.*)
+      - path: /reactapp-service(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-one
+            name: reactapp-service
             port:
-              number: 80
+              number: 3000
       - path: /hello-world-two(/|$)(.*)
         pathType: Prefix
         backend:
@@ -34,9 +34,9 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: aks-helloworld-one
+            name: reactapp-service
             port:
-              number: 80
+              number: 3000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

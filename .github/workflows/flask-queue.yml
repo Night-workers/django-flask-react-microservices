@@ -20,7 +20,7 @@ env:
   REGISTRY_NAME: senjespakk/flask-queue
   CLUSTER_NAME: aks-getting-started
   CLUSTER_RESOURCE_GROUP: aks-getting-started
-  NAMESPACE: default
+  NAMESPACE: ingress-basic
 
 
 jobs:

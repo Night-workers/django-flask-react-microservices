@@ -41,3 +41,10 @@ resource "azurerm_container_registry" "aks-getting-started" {
   sku                 = "Premium"
   admin_enabled       = false
 }
+resource "azurerm_container_registry" "aks-getting-started2" {
+  name                  = "aksgettingstarted2"
+  location              = azurerm_resource_group.aks-getting-started.location
+  resource_group_name   = azurerm_resource_group.aks-getting-started.name
+  sku                 = "Premium"
+  admin_enabled       = true
+}
