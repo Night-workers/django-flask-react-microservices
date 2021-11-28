@@ -17,14 +17,14 @@ spec:
   - host: micro-python.southafricanorth.cloudapp.azure.com
     http:
       paths:
-      - path: /flask(/|$)(.*)
+      - path: /flask/(.*)
         pathType: Prefix
         backend:
           service:
             name: flask-app-service
             port:
               number: 5000
-      - path: /django-app-service(/|$)(.*)
+      - path: /django/(.*)
         pathType: Prefix
         backend:
           service:
