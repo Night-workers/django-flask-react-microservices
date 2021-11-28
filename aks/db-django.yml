@@ -2,9 +2,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
+  namespace: micro-python
 spec:
   capacity:
-    storage: 6Gi
+    storage: 2Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -16,12 +17,13 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
+  namespace: micro-python
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 6Gi
+      storage: 1Gi
 
 ---
 
@@ -29,6 +31,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db-django-deployment
+  namespace: micro-python
   labels:
     app: db-django
 spec:
@@ -46,10 +49,6 @@ spec:
           image: mysql:8
           ports:
             - containerPort: 3306
-          resources:
-            requests:
-              memory: "4Gi"
-              cpu: "0.5"
           env:
             - name: MYSQL_DATABASE
               valueFrom:
@@ -88,6 +87,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: db-django-service
+  namespace: micro-python
 spec:
   selector:
     app: db-django
