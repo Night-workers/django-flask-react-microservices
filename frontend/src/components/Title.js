@@ -6,8 +6,8 @@ const Title = () => {
   const [world, setWorld] = useState([{}])
   const [helloloading, setHelloLoading] = useState(false)
   const [worldloading, setWorldLoading] = useState(false)
-  const helloUrl = `http://django-app-service/api/`
-  const worldUrl = `http://micro-python.southafricanorth.cloudapp.azure.com/flask/api`
+  const helloUrl = `https://micro-python.southafricanorth.cloudapp.azure.com/django/api/`
+  const worldUrl = `https://micro-python.southafricanorth.cloudapp.azure.com/flask/api`
 
   useEffect(() => {
     const getHello = async () => {
