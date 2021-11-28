@@ -2,12 +2,12 @@ name: React Image CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - frontend/** 
       - aks/react-app.yml
   pull_request:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - frontend/** 
       - aks/react-app.yml

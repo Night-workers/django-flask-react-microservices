@@ -2,12 +2,12 @@ name: Django Image CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - DjangoApp/**
       - aks/django-app.yml
   pull_request:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - DjangoApp/**
       - aks/django-app.yml

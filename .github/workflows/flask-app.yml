@@ -2,12 +2,12 @@ name: Flask Image CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - FlaskApp/**
       - aks/flasl-app.yml
   pull_request:
-    branches: [ develop ]
+    branches: [ micro-python ]
     paths: 
       - FlaskApp/**
       - aks/flasl-app.yml
