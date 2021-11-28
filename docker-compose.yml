@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  djangoapp:
+    build:
+      context: DjangoApp/
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./DjangoApp:/django
+    depends_on:
+      - db-django
+
+
+  db-django:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: DjangoApp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./DjangoApp/.dbdata:/var/lib/mysql
+    ports:
+      - 33066:3306
+
+  flaskapp:
+    build: 
+      context: FlaskApp/
+    restart: always
+    ports:
+      - 8001:5000
+    volumes:
+      - ./FlaskApp:/flask
+
+  # rabbitmq:
+  #   image: rabbitmq:3.9.10-management
+
