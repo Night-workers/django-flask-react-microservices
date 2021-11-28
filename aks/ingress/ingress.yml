@@ -17,20 +17,28 @@ spec:
   - host: micro-python.southafricanorth.cloudapp.azure.com
     http:
       paths:
-      - path: /flask(/|$)(.*)
+      - path: /flask/(.*)
         pathType: Prefix
         backend:
           service:
             name: flask-app-service
             port:
               number: 5000
-      - path: /django-app-service(/|$)(.*)
+
+      - path: /django/(.*)
         pathType: Prefix
         backend:
           service:
             name: django-app-service
             port:
               number: 8000
+      - path: /(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: react-app-service
+            port:
+              number: 3000
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
