@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: db-django
-          image: mysql:8
+          image: mysql:5.7.22
           ports:
             - containerPort: 3306
           env:
@@ -76,7 +76,7 @@ spec:
                   
           volumeMounts:
             - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
+              mountPath: /var/lib/minesql
 
       volumes:
         - name: mysql-persistent-storage
