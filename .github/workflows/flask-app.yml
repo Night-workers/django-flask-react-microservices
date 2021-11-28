@@ -5,7 +5,7 @@ on:
     branches: [ micro-python ]
     paths: 
       - FlaskApp/**
-      - aks/flasl-app.yml
+      - aks/flask-app.yml
   pull_request:
     branches: [ micro-python ]
     paths: 
