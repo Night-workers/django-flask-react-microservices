@@ -17,7 +17,7 @@ spec:
   - host: micro-python.southafricanorth.cloudapp.azure.com
     http:
       paths:
-      - path: /flask(/|$)(.*)
+      - path: /flask/(.*)
         pathType: Prefix
         backend:
           service:

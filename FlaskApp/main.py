@@ -5,7 +5,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/api')
+@app.route('/flask/api')
 def index():
     return {"id":1,"title":"WORLD"}
     
