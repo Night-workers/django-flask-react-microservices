@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'micro-python.southafricanorth.cloudapp.azure.com',
     'localhost',
     '127.0.0.1',
+    '20.87.89.71',
 ]
 
 
