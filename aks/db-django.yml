@@ -34,6 +34,7 @@ metadata:
   namespace: micro-python
   labels:
     app: db-django
+    tier: mysql
 spec:
   replicas: 1
   selector:
@@ -43,6 +44,7 @@ spec:
     metadata:
       labels:
         app: db-django
+        tier: mysql
     spec:
       containers:
         - name: db-django
@@ -50,24 +52,6 @@ spec:
           ports:
             - containerPort: 3306
           env:
-            - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: db-django-secret
-                  key: database  
-
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: db-django-secret
-                  key: user  
-
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-django-secret
-                  key: pass  
-
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -91,6 +75,9 @@ metadata:
 spec:
   selector:
     app: db-django
+    tier: mysql
   ports:
-    - port: 3306
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
   clusterIP: None
