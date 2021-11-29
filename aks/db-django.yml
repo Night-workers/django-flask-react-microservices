@@ -40,6 +40,8 @@ spec:
   selector:
     matchLabels:
       app: db-django
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -56,8 +58,8 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-django-secret
-                  key: root_pass   
-                  
+                  key: root_pass  
+
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/minesql
