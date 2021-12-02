@@ -38,7 +38,7 @@ data:
       skip_namespace_metadata "#{ENV['FLUENT_KUBERNETES_METADATA_SKIP_NAMESPACE_METADATA'] || 'false'}"
     </filter>
   file-fluent.conf: |-
-    <match *>
+    <match **>
       @type file
       path /tmp/file-test.log
     </match>

@@ -45,7 +45,7 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
-      terminationGracePeriodSeconds: 30
+      terminationGracePeriodSeconds: 32
       volumes:
       - name: fluentd-config
         configMap:
