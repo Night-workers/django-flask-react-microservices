@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  web:
+    image: httpd:2.4.51
+    ports:
+      - "80:80"
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: httpd.access
+
+  elasticsearch:
+    image: elasticsearch:7.14.2
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - node.name=elasticsearch
+      - cluster.initial_master_nodes=elasticsearch
+      - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9600:9600 # required for Performance Analyzer
+
+  kibana:
+    image: kibana:7.14.2
+    container_name: kibana
+    restart: always
+    ports:
+      - 5601:5601
+    expose:
+      - "5601"
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+
+  fluentd:
+    build: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+      - /var/lib/docker/containers:/fluentd/log/containers
+    links:
+      - "elasticsearch"
+    container_name: fluentd
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
+volumes:
+  elasticsearch:
+
