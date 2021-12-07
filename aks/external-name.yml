@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-sql-database
+  namespace: micro-python
+spec:
+  type: ExternalName
+  externalName: my-sql-database.mysql-cluster.svc.cluster.local
+  ports:
+  - port: 6446
