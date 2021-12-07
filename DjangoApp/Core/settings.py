@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'DjangoApp',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'db-django-service',
+        'HOST': 'my-sql-database',
         'PORT': '3306',
         # 'HOST': '127.0.0.1',
         # 'PORT': '33066',
