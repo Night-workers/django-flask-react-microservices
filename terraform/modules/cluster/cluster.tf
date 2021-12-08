@@ -15,6 +15,7 @@ resource "azurerm_kubernetes_cluster" "micro-python" {
     vm_size    = "Standard_D2s_v3"
   }
 
+
   service_principal  {
     client_id = var.serviceprinciple_id
     client_secret = var.serviceprinciple_key
