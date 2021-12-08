@@ -4,7 +4,7 @@ metadata:
   name: django-app-service
   namespace: micro-python
 spec:  
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: django-app
   ports:

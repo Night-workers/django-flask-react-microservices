@@ -26,7 +26,25 @@ spec:
               cpu: "0.3"
             limits:
               memory: "500Mi"
-              cpu: "0.5"     
+              cpu: "0.5" 
+          env:
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-django-secret
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-django-secret
+                  key: pass 
+
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-django-secret
+                  key: database   
                                 
 ---
 apiVersion: v1
