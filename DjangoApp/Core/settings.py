@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +29,7 @@ ALLOWED_HOSTS = [
     'micro-python.southafricanorth.cloudapp.azure.com',
     'localhost',
     '127.0.0.1',
-    '20.87.96.250',
+    '20.87.96.238',
 ]
 
 
@@ -78,18 +78,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Core.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DjangoApp',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db-django-service',
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'my-sql-database',
+        'PORT': '6446',
         # 'HOST': '127.0.0.1',
         # 'PORT': '33066',
     }
