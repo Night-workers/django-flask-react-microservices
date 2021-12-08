@@ -33,19 +33,16 @@ spec:
                 secretKeyRef:
                   name: db-django-secret
                   key: user
-
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: db-django-secret
-                  key: pass 
-
+                  key: pass
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
                   name: db-django-secret
-                  key: database   
-                                
+                  key: database                               
 ---
 apiVersion: v1
 kind: Service
