@@ -4,4 +4,5 @@ COPY ./frontend .
 RUN yarn install
 RUN yarn upgrade
 RUN yarn run build
+RUN chmod -R 775 /react
 CMD [ "yarn", "start"]
